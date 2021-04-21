@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import { Fragment } from 'react';
+import Homepage from './homepage/Homepage';
+import SequenceToText from './SequenceToText/SequenceToText';
+import { CssBaseline } from '@material-ui/core';
+import ApplicationBar from './AppBar/ApplicationBar'
+import useStyles from './styles';
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment >
+      <div className={classes.app}>
+      <CssBaseline />
+      <ApplicationBar />
+      <Switch>
+      <Route path='/seqtext/'>
+          <SequenceToText />
+        </Route>
+        <Route path='/'>
+          <Homepage />
+        </Route>
+      </Switch>
+      </div>
+    </Fragment>
   );
 }
 
